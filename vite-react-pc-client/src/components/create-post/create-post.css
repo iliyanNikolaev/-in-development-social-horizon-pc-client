@@ -1,0 +1,44 @@
+.create-post-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    border: none;
+    border-radius: 24px;
+    background-color: rgba(211, 211, 211, 0.384);
+    padding: 24px;
+    width: 600px;
+}
+
+.create-post-heading {
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.create-post-upper{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.create-post-profile-pic{
+    width: 32px;
+}
+
+.create-post-input{
+    width: 500px;
+    height: 24px;
+    border: none;
+    border-radius: 6px;
+}
+
+.create-post-lower{
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.create-post-lower i {
+    color: green;
+}

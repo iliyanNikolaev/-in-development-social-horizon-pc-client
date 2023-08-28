@@ -1,0 +1,28 @@
+.home-page-container{
+    display: flex;
+}
+
+.home-left-bar {
+    flex: 8;
+    height: calc(100vh - 60px);
+    overflow-y: scroll;
+    display: flex;
+    justify-content: center;
+}
+
+::-webkit-scrollbar {
+    width: 3px;
+}
+
+::-webkit-scrollbar-track {
+    width: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    width: 3px;
+    background-color: grey;
+}
+
+.home-right-bar {
+    flex: 4;
+}

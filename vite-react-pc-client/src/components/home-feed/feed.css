@@ -1,0 +1,13 @@
+.feed{
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 12px;
+}
+
+.feed-lowerside{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-bottom: 12px;
+}
