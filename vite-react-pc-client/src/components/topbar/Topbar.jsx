@@ -1,5 +1,7 @@
 import './topbar.css';
 
+import { Link } from 'react-router-dom';
+
 export default function Topbar() {
   return (
     <div className="topbar-container">
@@ -14,16 +16,15 @@ export default function Topbar() {
         </div>
         <div className="topbar-rightside">
             <div className="nav-icons">
-                <div className="icon-item">
+                <Link to="/login" className="icon-item">
                     <i className="fas fa-sign-in-alt"></i>
-                </div>
-                <div className="icon-item">
+                </Link>
+                <Link to="/register" className="icon-item">
                     <i className="fas fa-registered"></i>
-                </div>
-                <div className="icon-item">
+                </Link>
+                <Link to="/" className="icon-item">
                     <i className="fas fa-newspaper"></i>
-                    <p className="icon-badge">1</p>
-                </div>
+                </Link>
                 <div className="icon-item">
                     <i className="fas fa-envelope"></i>
                     <p className="icon-badge">1</p>
