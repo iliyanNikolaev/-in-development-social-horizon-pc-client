@@ -1,0 +1,9 @@
+.connection-user-item-container{
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.connection-profile-pic{
+    width: 32px;
+}

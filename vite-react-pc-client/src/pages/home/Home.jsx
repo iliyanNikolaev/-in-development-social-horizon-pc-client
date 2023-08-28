@@ -1,6 +1,7 @@
 import './home.css'
 
 import Feed from '../../components/home-feed/Feed'
+import RightBar from '../../components/rightbar/RightBar'
 
 export default function Home() {
   return (
@@ -10,7 +11,7 @@ export default function Home() {
       </div>
 
       <div className="home-right-bar">
-        right-bar
+        <RightBar />
       </div>
     </div>
   )
