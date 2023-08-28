@@ -1,0 +1,32 @@
+.profile-container{
+    display: flex;
+}
+
+.profile-left-bar,
+.profile-right-bar {
+    height: calc(100vh - 60px);
+    overflow-y: scroll;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-left-bar {
+    flex: 9;
+}
+
+/* ::-webkit-scrollbar {
+    width: 3px;
+}
+
+::-webkit-scrollbar-track {
+    width: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    width: 3px;
+    background-color: grey;
+} */
+
+.profile-right-bar {
+    flex: 3;
+}
