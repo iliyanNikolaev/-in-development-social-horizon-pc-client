@@ -11,9 +11,10 @@
 }
 
 .home-left-bar {
-    flex: 9;
+    flex: 10;
 }
 
 .home-right-bar {
-    flex: 3;
+    flex: 2;
+    border-left: 1px solid;
 }

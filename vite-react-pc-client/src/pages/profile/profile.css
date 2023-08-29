@@ -11,22 +11,10 @@
 }
 
 .profile-left-bar {
-    flex: 9;
+    flex: 10;
 }
-
-/* ::-webkit-scrollbar {
-    width: 3px;
-}
-
-::-webkit-scrollbar-track {
-    width: 3px;
-}
-
-::-webkit-scrollbar-thumb {
-    width: 3px;
-    background-color: grey;
-} */
 
 .profile-right-bar {
-    flex: 3;
+    flex: 2;
+    border-left: 1px solid;
 }
