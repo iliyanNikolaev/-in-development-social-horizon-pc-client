@@ -1,0 +1,1 @@
+export const ASSETS_FOLDER_PATH='http://localhost:5173/public/assets/'
