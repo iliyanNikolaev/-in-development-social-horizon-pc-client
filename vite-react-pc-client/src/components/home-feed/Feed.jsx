@@ -1,7 +1,7 @@
 import './feed.css'
 
 import CreatePost from '../create-post/CreatePost'
-import PostItem from '../post-item/PostItem'
+import PostsList from '../posts-list/PostsList'
 
 import { posts } from '../../dummydata'
 
@@ -13,7 +13,7 @@ export default function Feed() {
             </div>
 
             <div className="feed-lowerside">
-                { posts.map(p => <PostItem key={p.id} post={p} />)}
+                <PostsList posts={posts} />
             </div>
         </div>
     )

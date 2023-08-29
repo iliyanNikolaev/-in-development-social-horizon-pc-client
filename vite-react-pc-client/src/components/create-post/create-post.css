@@ -8,6 +8,7 @@
     background-color: rgba(211, 211, 211, 0.384);
     padding: 24px;
     width: 600px;
+    box-shadow: 10px 10px 5px #aaaaaa;
 }
 
 .create-post-heading {
