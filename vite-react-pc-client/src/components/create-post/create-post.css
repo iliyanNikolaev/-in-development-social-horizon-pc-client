@@ -5,10 +5,10 @@
     align-items: center;
     border: none;
     border-radius: 24px;
-    background-color: rgba(211, 211, 211, 0.384);
+    background-color: #ffffff;
     padding: 24px;
     width: 600px;
-    box-shadow: 10px 10px 5px #aaaaaa;
+    box-shadow: 2px 2px 2px #aaaaaa;
 }
 
 .create-post-heading {
@@ -30,7 +30,22 @@
     width: 500px;
     height: 24px;
     border: none;
-    border-radius: 6px;
+    border-radius: 24px;
+    padding: 12px;
+    background-color: #f0f2f5;
+    font-size: 16px;
+    padding-left: 20px;
+}
+
+.create-post-input:hover{
+    background-color: #d0d0d0;
+    cursor: pointer;
+}
+
+.create-post-input:focus{
+    background-color: #d7d6d6;
+    cursor: auto;
+    outline: none;
 }
 
 .create-post-lower{

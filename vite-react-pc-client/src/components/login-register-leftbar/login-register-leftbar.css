@@ -1,0 +1,15 @@
+.login-register-leftside{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.login-register-leftside .logo {
+    font-size: 50px;
+    color: #0776e8;
+}
+
+.login-register-leftside .slogan {
+    font-size: 24px;
+}
