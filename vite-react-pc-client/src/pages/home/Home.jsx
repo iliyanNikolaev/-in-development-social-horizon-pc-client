@@ -6,6 +6,7 @@ import RightBar from '../../components/rightbar/RightBar'
 export default function Home() {
   return (
     <div className="home-page-container">
+
       <div className="home-left-bar">
         <Feed />
       </div>
@@ -13,6 +14,7 @@ export default function Home() {
       <div className="home-right-bar">
         <RightBar />
       </div>
+      
     </div>
   )
 }
