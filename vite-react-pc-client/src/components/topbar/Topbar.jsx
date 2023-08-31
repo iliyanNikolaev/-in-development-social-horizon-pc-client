@@ -45,7 +45,7 @@ export default function Topbar() {
                         <Link to='/logout' className="icon-item logoutButton">
                             <i className="fas fa-sign-out-alt"></i>
                         </Link>
-                        <Link to='/profile' className="icon-item profile">
+                        <Link to={`/profile/${authUserData?._id}`} className="icon-item profile">
                             <i className="fas fa-user-circle"></i>
                         </Link>
                     </>}

@@ -5,11 +5,14 @@ import ProfileUserInfo from '../profile-user-info/ProfileUserInfo';
 
 import { posts } from '../../dummydata';
 
-export default function ProfileLeftbar() {
+export default function ProfileLeftbar({
+  userId
+}) {
+
   return (
     <div className="profile-leftbar">
       <div className="profile-leftbar-top">
-        <ProfileUserInfo />
+        <ProfileUserInfo userId={userId}/>
       </div>
 
       <hr />
