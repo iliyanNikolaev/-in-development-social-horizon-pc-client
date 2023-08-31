@@ -17,7 +17,7 @@ export default function Topbar() {
             <div className="topbar-center">
                 <div className="searchbar">
                     <i className="fas fa-search"></i>
-                    <input type="text" placeholder="search" />
+                    <input type="text" placeholder="search for user..." />
                 </div>
             </div>
             <div className="topbar-rightside">
