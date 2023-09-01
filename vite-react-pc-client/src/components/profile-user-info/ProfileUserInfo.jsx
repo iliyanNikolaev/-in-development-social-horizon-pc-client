@@ -1,18 +1,20 @@
 import './profile-user-info.css'
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 import { getUserById } from '../../services/userService'
 
 export default function ProfileUserInfo({
     userId
 }) {
-
+    const navigate = useNavigate();
     const [currentUser, setCurrentUser] = useState({});
 
     useEffect(() => {
         getUserById(userId)
-            .then(user => {
-                setCurrentUser(user);
+            .then(user => setCurrentUser(user))
+            .catch(err => {
+                navigate('/');
             })
     }, [userId]);
 
