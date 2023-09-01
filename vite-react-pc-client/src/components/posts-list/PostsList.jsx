@@ -7,7 +7,7 @@ export default function PostsList({
 }) {
   return (
     <div className="posts-list-container">
-        { posts.map(p => <PostItem key={p.id} post={p} />) }
+        { posts.map(p => <PostItem key={p._id} post={p} />) }
     </div>
   )
 }

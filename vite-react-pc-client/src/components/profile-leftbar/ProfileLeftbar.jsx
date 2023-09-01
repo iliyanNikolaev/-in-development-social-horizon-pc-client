@@ -3,11 +3,23 @@ import './profile-leftbar.css'
 import PostsList from '../posts-list/PostsList';
 import ProfileUserInfo from '../profile-user-info/ProfileUserInfo';
 
-import { posts } from '../../dummydata';
+import { useState, useEffect } from 'react';
+import { getPostsFromCurrentUser } from '../../services/postService';
+
 
 export default function ProfileLeftbar({
   userId
 }) {
+
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    getPostsFromCurrentUser(userId)
+      .then(posts =>{
+        setPosts(posts);
+      })
+      .catch(err => alert(err.message));
+  }, [userId])
 
   return (
     <div className="profile-leftbar">
@@ -18,7 +30,8 @@ export default function ProfileLeftbar({
       <hr />
 
       <div className="profile-left-bar-bottom">
-        <PostsList posts={posts} />
+        { posts.length > 0 ? <PostsList posts={posts} /> : <p>This user no have posts yet...</p>}
+
       </div>
     </div>
   )

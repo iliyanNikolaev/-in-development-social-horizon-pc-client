@@ -74,3 +74,8 @@
     font-size: 18px;
     margin-right: 6px;
 }
+
+.postItem-ownerProfile{
+    text-decoration: none;
+    color: #0776e8;
+}

@@ -1,4 +1,4 @@
-import * as request from '../api/request.js';
+import { post, get } from '../api/request.js';
 import { setUserData, clearUserData } from '../utils/localStorageUserData.js';
 
 const endpoints = {
@@ -9,7 +9,7 @@ const endpoints = {
 
 export async function login(username, password) {
     try {
-        const userData = await request.post(endpoints.login, { username, password });
+        const userData = await post(endpoints.login, { username, password });
 
         setUserData(userData);
 
@@ -21,7 +21,7 @@ export async function login(username, password) {
 
 export async function register(username, password) {
     try {
-        const userData = await request.post(endpoints.register, { username, password });
+        const userData = await post(endpoints.register, { username, password });
 
         setUserData(userData);
 
@@ -33,7 +33,7 @@ export async function register(username, password) {
 
 export async function logout() {
     try {
-        await request.get(endpoints.logout);
+        await get(endpoints.logout);
 
         clearUserData();
     } catch (err) {
