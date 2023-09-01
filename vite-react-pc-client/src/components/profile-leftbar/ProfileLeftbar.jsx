@@ -6,10 +6,14 @@ import ProfileUserInfo from '../profile-user-info/ProfileUserInfo';
 import { useState, useEffect } from 'react';
 import { getPostsFromCurrentUser } from '../../services/postService';
 
+import { useNavigate } from 'react-router-dom';
+
 
 export default function ProfileLeftbar({
   userId
 }) {
+
+  const navigate = useNavigate();
 
   const [posts, setPosts] = useState([]);
 
@@ -18,7 +22,10 @@ export default function ProfileLeftbar({
       .then(posts =>{
         setPosts(posts);
       })
-      .catch(err => alert(err.message));
+      .catch(err => { return navigate('/') });
+      /* todo... show error message with error component, 
+      ако в url-a е написано нарочно нещо различно от валидно userId, това е компонента, който ще получи първи грешката
+      от сървъра, и като ретърнне navigate tо ... спира изпълнението на всичко надолу и ренди грешката*/
   }, [userId])
 
   return (

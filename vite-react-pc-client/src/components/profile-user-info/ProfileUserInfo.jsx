@@ -1,21 +1,23 @@
 import './profile-user-info.css'
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect, useContext } from 'react'
+
+import { AuthContext } from '../../contexts/authContext';
 
 import { getUserById } from '../../services/userService'
 
 export default function ProfileUserInfo({
     userId
 }) {
-    const navigate = useNavigate();
+
+    const { authUserData } = useContext(AuthContext);
+
     const [currentUser, setCurrentUser] = useState({});
 
     useEffect(() => {
         getUserById(userId)
             .then(user => setCurrentUser(user))
-            .catch(err => {
-                navigate('/');
-            })
+        // не е необходимо да кетчваме, понеже горния компонент в дървото
+        // е проверил userId-то, и ако то е невалидно текущият компонент няма да се рендерира 
     }, [userId]);
 
     return (
@@ -30,11 +32,12 @@ export default function ProfileUserInfo({
                 </div>
             </div>
 
-            <div className="user-actions">
-                <span className="user-action-link"><i className="fas fa-envelope user-action-link-message"></i> Send Message</span>
-                <span className="user-action-link"><i className="fas fa-heart user-action-link-follow"></i> Follow</span>
-            </div>
-
-    </>
-  )
+            {!authUserData?.username || authUserData._id == userId
+                ? null
+                : <div className="user-actions">
+                    <span className="user-action-link"><i className="fas fa-envelope user-action-link-message"></i> Send Message</span>
+                    <span className="user-action-link"><i className="fas fa-heart user-action-link-follow"></i> Follow</span>
+                </div>}
+        </>
+    )
 }

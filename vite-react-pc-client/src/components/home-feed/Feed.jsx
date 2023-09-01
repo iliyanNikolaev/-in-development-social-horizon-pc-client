@@ -1,5 +1,5 @@
 import './feed.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import CreatePost from '../create-post/CreatePost'
 import PostsList from '../posts-list/PostsList'
@@ -9,16 +9,18 @@ import { AuthContext } from '../../contexts/authContext'
 import { getFirstTenPosts, getNewsFeedPosts } from '../../services/postService'
 
 export default function Feed() {
+    const navigate = useNavigate();
+
     const [posts, setPosts] = useState([]);
 
     const { authUserData } = useContext(AuthContext);
 
-    if(!authUserData) {
+    if(!authUserData?.username) {
         // ако потребителя не е логнат, сървъра ще му върне първите 10 поста в базата, за да има какво да изрендим във feed-a 
         useEffect(() => {
             getFirstTenPosts()
                 .then(data => setPosts(data))
-                .catch(err => alert(err.message));
+                .catch(err => navigate('/') /* todo... show error message with error component */);
         }, []);
     } else { 
         // ако потребителя е логнат, сървъра му връща постовете на последваните от него хора, 
@@ -26,17 +28,17 @@ export default function Feed() {
         useEffect(() => {
             getNewsFeedPosts()
                 .then(data => setPosts(data))
-                .catch(err => alert(err.message));
+                .catch(err => navigate('/') /* todo... show error message with error component */);
         }, []);
     }
 
     return (
         <div className="feed">
-            {authUserData?.username
+            {authUserData?.username // ако има потребител компонента за създаване на пост се рендерира
                 ? <div className="feed-upperside">
                     <CreatePost />
                 </div>
-                : <p className='guest-warning'>
+                : <p className='guest-warning'> 
                     <Link className="warning-link" to="/login">Log in </Link>
                     or
                     <Link className="warning-link" to="/register"> register </Link>
