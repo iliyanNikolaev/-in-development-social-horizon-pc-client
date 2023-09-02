@@ -11,7 +11,7 @@ export default function ProfileUserInfo({
 
     const { authUserData } = useContext(AuthContext);
 
-    const [followUser, setFollowUser] = useState(false);
+    const [userIsFollowed, setUserIsFollowed] = useState(false);
 
     const [followersCount, setFollowersCount] = useState(user.followers.length);
 
@@ -19,7 +19,7 @@ export default function ProfileUserInfo({
     useEffect(() => {
         user.followers.forEach(f => {
             if (f._id == authUserData?._id) {
-                setFollowUser(true);
+                setUserIsFollowed(true);
             }
         })
         // не е необходимо да кетчваме, понеже горния компонент в дървото
@@ -29,11 +29,11 @@ export default function ProfileUserInfo({
     async function followUnfollowHandler() {
         await followUnfollowUserById(user._id);
 
-        if(followUser) {
-            setFollowUser(false);
+        if(userIsFollowed) {
+            setUserIsFollowed(false);
             setFollowersCount(prev => prev - 1);
         } else {
-            setFollowUser(true);
+            setUserIsFollowed(true);
             setFollowersCount(prev => prev + 1);
         }
     }
@@ -54,7 +54,7 @@ export default function ProfileUserInfo({
                 ? null
                 : <div className="user-actions">
                     <span className="user-action-link"><i className="fas fa-envelope user-action-link-message"></i> Send Message</span>
-                    <button className="user-action-link" onClick={followUnfollowHandler}><i className="fas fa-heart user-action-link-follow"></i> {followUser ? 'Unfollow' : 'Follow'}</button>
+                    <button className="user-action-link" onClick={followUnfollowHandler}><i className="fas fa-heart user-action-link-follow"></i> {userIsFollowed ? 'Unfollow' : 'Follow'}</button>
                 </div>}
         </>
     )

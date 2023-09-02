@@ -1,15 +1,41 @@
 import './post-item.css'
 
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../contexts/authContext'
 
 import { Link } from 'react-router-dom';
+
+import { likeUnlikePost } from '../../services/postService';
 
 export default function PostItem({
     post
 }) {
 
     const { authUserData } = useContext(AuthContext);
+
+    const [postIsLiked, setPostIsLiked] = useState(false);
+
+    const [likesCount, setLikesCount] = useState(post.likes.length);
+
+    useEffect(() => {
+        post.likes.forEach(p => {
+            if(p._id == authUserData?._id) {
+                setPostIsLiked(true);
+            } 
+        });
+    }, [post]);
+
+    async function likeUnlikeHandler() {
+        await likeUnlikePost(post._id);
+
+        if(postIsLiked) {
+            setPostIsLiked(false);
+            setLikesCount(prev => prev - 1);
+        } else {
+            setPostIsLiked(true);
+            setLikesCount(prev => prev + 1);
+        }
+    }
 
     return (
         <div className="post-item-container">
@@ -29,7 +55,7 @@ export default function PostItem({
             <div className="post-item-reactions">
                 <div className="likes-container">
                     <i className="fas fa-thumbs-up likes"></i>
-                    <span className="likes-count">{post.likes.length} likes</span>
+                    <span className="likes-count">{likesCount} likes</span>
                 </div>
 
                 <div className="likes-container">
@@ -41,8 +67,8 @@ export default function PostItem({
                 ? <>
                     <hr />
                     <div className="post-item-actions">
-                        <button className="like-action">
-                            <span>Like</span>
+                        <button className="like-action" onClick={likeUnlikeHandler}>
+                            <span>{postIsLiked ? 'Unlike' : 'Like'}</span>
                             <i className="far fa-thumbs-up"></i>
                         </button>
 
