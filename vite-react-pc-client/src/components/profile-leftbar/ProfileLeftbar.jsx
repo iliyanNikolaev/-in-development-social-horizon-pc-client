@@ -6,38 +6,35 @@ import ProfileUserInfo from '../profile-user-info/ProfileUserInfo';
 import { useState, useEffect } from 'react';
 import { getPostsFromCurrentUser } from '../../services/postService';
 
-import { useNavigate } from 'react-router-dom';
-
 
 export default function ProfileLeftbar({
-  userId
+  user
 }) {
 
-  const navigate = useNavigate();
-
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState(false); //сетвам го на false за лесна проверка, aко е false няма да изренди компонента с постс лист, а ще изренди лоадинг...
 
   useEffect(() => {
-    getPostsFromCurrentUser(userId)
-      .then(posts =>{
+    getPostsFromCurrentUser(user._id)
+      .then(posts => {
         setPosts(posts);
-      })
-      .catch(err => { return navigate('/') });
-      /* todo... show error message with error component, 
-      ако в url-a е написано нарочно нещо различно от валидно userId, това е компонента, който ще получи първи грешката
-      от сървъра, и като ретърнне navigate tо ... спира изпълнението на всичко надолу и ренди грешката*/
-  }, [userId])
+      });
+  }, [user]);
+  // не е необходимо да кетчваме, понеже горния компонент в дървото
+  // е проверил userId-то, и ако то е невалидно текущият компонент няма да се рендерира
 
   return (
     <div className="profile-leftbar">
       <div className="profile-leftbar-top">
-        <ProfileUserInfo userId={userId}/>
+        <ProfileUserInfo user={user} />
       </div>
 
       <hr />
 
       <div className="profile-left-bar-bottom">
-        { posts.length > 0 ? <PostsList posts={posts} /> : <p>This user no have posts yet...</p>}
+        { posts ? 
+        <>{posts.length > 0 ? <PostsList posts={posts} /> : <p>This user no have posts yet...</p>}</> 
+        : <p>Loading...</p>}
+        
 
       </div>
     </div>
