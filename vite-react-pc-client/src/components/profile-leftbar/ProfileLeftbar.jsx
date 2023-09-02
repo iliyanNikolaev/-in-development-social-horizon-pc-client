@@ -16,7 +16,7 @@ export default function ProfileLeftbar({
   useEffect(() => {
     getPostsFromCurrentUser(user._id)
       .then(posts => {
-        setPosts(posts);
+        setPosts(posts.reverse());
       });
   }, [user]);
   // не е необходимо да кетчваме, понеже горния компонент в дървото

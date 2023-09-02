@@ -4,7 +4,8 @@ const endpoints = {
     fromCurrentUser: '/api/posts/from/',
     firstTen: '/api/posts/news/guest',
     newsFeed: '/api/posts/news/followings',
-    likeUnlike: (id) => `/api/posts/${id}/like`
+    likeUnlike: (id) => `/api/posts/${id}/like`,
+    create: '/api/posts/create'
 }
 
 export async function getPostsFromCurrentUser(userId) {
@@ -40,6 +41,16 @@ export async function getNewsFeedPosts() {
 export async function likeUnlikePost(postId) {
     try {
         await post(endpoints.likeUnlike(postId));
+    } catch (err) {
+        throw err;
+    }
+}
+
+export async function createPost(postData) {
+    try {
+        const createdPost = await post(endpoints.create, postData);
+
+        return createdPost;
     } catch (err) {
         throw err;
     }

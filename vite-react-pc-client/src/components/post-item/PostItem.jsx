@@ -50,7 +50,7 @@ export default function PostItem({
                 <p className="post-item-textcontent">
                     {post?.content}
                 </p>
-                <img className="post-item-img" src={post.image} alt="post-img" />
+                {post.image != '' ? <img className="post-item-img" src={post.image} alt="post-img" /> : null}
             </div>
             <div className="post-item-reactions">
                 <div className="likes-container">

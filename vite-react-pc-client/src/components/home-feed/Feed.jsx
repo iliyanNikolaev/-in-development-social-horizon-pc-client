@@ -6,7 +6,7 @@ import PostsList from '../posts-list/PostsList'
 
 import { useContext, useState, useEffect } from 'react'
 import { AuthContext } from '../../contexts/authContext'
-import { getFirstTenPosts, getNewsFeedPosts } from '../../services/postService'
+import { createPost, getFirstTenPosts, getNewsFeedPosts } from '../../services/postService'
 
 export default function Feed() {
     const navigate = useNavigate();
@@ -19,7 +19,7 @@ export default function Feed() {
         // ако потребителя не е логнат, сървъра ще му върне първите 10 поста в базата, за да има какво да изрендим във feed-a 
         useEffect(() => {
             getFirstTenPosts()
-                .then(data => setPosts(data))
+                .then(data => setPosts(data.reverse()))
                 .catch(err => navigate('/') /* todo... show error message with error component */);
         }, []);
     } else { 
@@ -27,16 +27,27 @@ export default function Feed() {
         // ако постовете са по-малко от 10, сървъра ще ги допълни до 10 със случайни постове
         useEffect(() => {
             getNewsFeedPosts()
-                .then(data => setPosts(data))
+                .then(data => setPosts(data.reverse()))
                 .catch(err => navigate('/') /* todo... show error message with error component */);
         }, []);
+    }
+
+    async function createPostHandler(postData) {
+        
+        try {
+            const post = await createPost(postData);
+            
+            setPosts(prev => [post, ...prev]);
+        } catch (err) {
+            throw err;
+        }
     }
 
     return (
         <div className="feed">
             {authUserData?.username // ако има потребител компонента за създаване на пост се рендерира
                 ? <div className="feed-upperside">
-                    <CreatePost />
+                    <CreatePost createPostHandler={createPostHandler} />
                 </div>
                 : <p className='guest-warning'> 
                     <Link className="warning-link" to="/login">Log in </Link>
