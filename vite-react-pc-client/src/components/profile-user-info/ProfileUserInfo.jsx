@@ -1,5 +1,5 @@
 import './profile-user-info.css'
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext, useRef } from 'react'
 
 import { AuthContext } from '../../contexts/authContext'
 
@@ -13,8 +13,11 @@ export default function ProfileUserInfo({
 
     const [followUser, setFollowUser] = useState(false);
 
+    const [followersCount, setFollowersCount] = useState(user.followers.length);
+
+
     useEffect(() => {
-        user.followers?.forEach(f => {
+        user.followers.forEach(f => {
             if (f._id == authUserData?._id) {
                 setFollowUser(true);
             }
@@ -26,7 +29,13 @@ export default function ProfileUserInfo({
     async function followUnfollowHandler() {
         await followUnfollowUserById(user._id);
 
-        setFollowUser(prev => !prev);
+        if(followUser) {
+            setFollowUser(false);
+            setFollowersCount(prev => prev - 1);
+        } else {
+            setFollowUser(true);
+            setFollowersCount(prev => prev + 1);
+        }
     }
 
     return (
@@ -36,8 +45,8 @@ export default function ProfileUserInfo({
                 <img className="profile-pic" src={user.profilePicture} alt="profile-pic" />
                 <h2 className="username">{user.username}</h2>
                 <div className="userinfo-connections">
-                    <span className="userinfo-connections-followers">{user.followers?.length} followers</span>
-                    <span className="userinfo-connections-followings">{user.followings?.length} followings</span>
+                    <span className="userinfo-connections-followers">{followersCount} followers</span>
+                    <span className="userinfo-connections-followings">{user.followings.length} followings</span>
                 </div>
             </div>
 
