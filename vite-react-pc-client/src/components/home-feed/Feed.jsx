@@ -19,7 +19,7 @@ export default function Feed() {
         // ако потребителя не е логнат, сървъра ще му върне първите 10 поста в базата, за да има какво да изрендим във feed-a 
         useEffect(() => {
             getFirstTenPosts()
-                .then(data => setPosts(data.reverse()))
+                .then(data => setPosts(data))
                 .catch(err => navigate('/') /* todo... show error message with error component */);
         }, []);
     } else { 
@@ -27,7 +27,7 @@ export default function Feed() {
         // ако постовете са по-малко от 10, сървъра ще ги допълни до 10 със случайни постове
         useEffect(() => {
             getNewsFeedPosts()
-                .then(data => setPosts(data.reverse()))
+                .then(data => setPosts(data))
                 .catch(err => navigate('/') /* todo... show error message with error component */);
         }, []);
     }
