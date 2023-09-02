@@ -38,10 +38,7 @@ export default function Topbar() {
                             <i className="fas fa-envelope"></i>
                             <p className="icon-badge">1</p>
                         </div>
-                        <div className="icon-item">
-                            <i className="fas fa-bell"></i>
-                            <p className="icon-badge">2</p>
-                        </div>
+
                         <Link to='/logout' className="icon-item logoutButton">
                             <i className="fas fa-sign-out-alt"></i>
                         </Link>
