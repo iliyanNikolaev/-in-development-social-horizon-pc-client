@@ -50,10 +50,19 @@
     justify-content: space-around;
 }
 
+.likes-show-button,
+.comments-show-button {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
 .likes-container,
 .comments-container{
     display: flex;
-    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     gap: 6px;
 }
 
