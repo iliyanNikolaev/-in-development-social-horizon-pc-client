@@ -1,4 +1,4 @@
-.likes-modal-container, .overlay {
+.comments-modal-container, .overlay {
     width: 100vw;
     height: 100vh;
     top: 0;
@@ -13,7 +13,7 @@
     backdrop-filter: blur(2px);
 }
 
-.likes-modal-wrapper {
+.comments-modal-wrapper {
     position: absolute;
     top: 40%;
     left: 50%;
@@ -22,11 +22,11 @@
     background: #f0f2f5;
     padding: 14px 14px;
     border-radius: 3px;
-    max-width: 600px;
-    min-width: 300px;
+    max-width: 1800px;
+    min-width: 800px;
 }
 
-.likes-modal-wrapper .close-button {
+.comments-modal-wrapper .close-button {
     position: absolute;
     top: 0px;
     right: 20px;
@@ -40,18 +40,18 @@
     font-weight: bold;
 }
 
-.likes-heading{
+.comments-heading{
     text-align: center;
 }
 
-.no-likes-msg{
+.no-comments-msg{
     text-align: center;
     font-weight: 600;
     color: #0776e8;
     margin-top: 12px;
 }
 
-.likes-list{
+.comments-list{
     list-style: none;
     margin-top: 12px;
     display: flex;
@@ -59,22 +59,3 @@
     gap: 8px;
 }
 
-.like-profile-pic{
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    overflow: hidden;
-    object-fit: cover;
-}
-
-.like-user-item{
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.like-profile-link{
-    text-decoration: none;
-    font-weight: bold;
-    color: #0776e8;
-}

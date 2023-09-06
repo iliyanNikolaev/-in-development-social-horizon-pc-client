@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { likeUnlikePost } from '../../services/postService';
 
 import LikesModal from '../likes-modal/LikesModal';
+import CommentsModal from '../comments-modal/CommentsModal';
 
 export default function PostItem({
     post
@@ -93,7 +94,7 @@ export default function PostItem({
 
                 {/* modals */}
                 {likesIsOpen && <LikesModal likes={likes} setLikesIsOpen={setLikesIsOpen}/>}
-                {commentsIsOpen && <div><button onClick={() => setCommentsIsOpen(false)}>X</button> COMMENTS HERE </div>}
+                {commentsIsOpen && <CommentsModal setCommentsIsOpen={setCommentsIsOpen} postId={post._id}/> }
         </div>
     )
 }
