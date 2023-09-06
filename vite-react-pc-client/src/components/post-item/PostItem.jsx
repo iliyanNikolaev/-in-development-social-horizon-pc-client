@@ -42,14 +42,6 @@ export default function PostItem({
         }
     }
 
-    function openComments() {
-        setCommentsIsOpen(true);
-    }
-
-    function closeComments() {
-        setCommentsIsOpen(false);
-    }
-
     return (
         <div className="post-item-container">
             <div className="post-item-userinfo">
@@ -72,18 +64,14 @@ export default function PostItem({
                         <i className="fas fa-thumbs-up likes"></i>
                         <span className="likes-count">{likes.length} likes</span>
                     </div>
-
-                    {likesIsOpen && <LikesModal likes={likes} />}
                 </div>
 
                 <div className="comments-container">
 
-                    <div className="comments-show-button" onClick={openComments}>
+                    <div className="comments-show-button" onClick={() => setCommentsIsOpen(true)}>
                         <i className="fas fa-comment comments"></i>
                         <span className="comments-count">{post.comments.length} comments</span>
                     </div>
-
-                    {commentsIsOpen && <div><button onClick={closeComments}>X</button> COMMENTS HERE </div>}
                 </div>
             </div>
 
@@ -102,6 +90,10 @@ export default function PostItem({
                         </div>
                     </div></>
                 : null}
+
+                {/* modals */}
+                {likesIsOpen && <LikesModal likes={likes} setLikesIsOpen={setLikesIsOpen}/>}
+                {commentsIsOpen && <div><button onClick={() => setCommentsIsOpen(false)}>X</button> COMMENTS HERE </div>}
         </div>
     )
 }

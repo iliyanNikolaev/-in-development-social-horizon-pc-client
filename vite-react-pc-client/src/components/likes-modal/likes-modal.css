@@ -1,9 +1,59 @@
-.likes-modal-container{
-   
+.likes-modal-container, .overlay {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+}
+
+.overlay {
+    background: rgba(49,49,49,0.8);
+    backdrop-filter: blur(2px);
+}
+
+.likes-modal-wrapper {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1.4;
+    background: #f0f2f5;
+    padding: 14px 14px;
+    border-radius: 3px;
+    max-width: 600px;
+    min-width: 300px;
+}
+
+.close-button {
+    position: absolute;
+    top: 2px;
+    right: 20px;
+    padding: 5px 7px;
+    border: none;
+    width: 24px;
+    height: 24px;
+    color: rgb(255, 76, 76);
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.likes-heading{
+    text-align: center;
+}
+
+.no-likes-msg{
+    text-align: center;
+    font-weight: 600;
+    color: #0776e8;
+    margin-top: 12px;
 }
 
 .likes-list{
     list-style: none;
+    margin-top: 12px;
 }
 
 .like-profile-pic{
@@ -12,4 +62,16 @@
     border-radius: 50%;
     overflow: hidden;
     object-fit: cover;
+}
+
+.like-user-item{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.like-profile-link{
+    text-decoration: none;
+    font-weight: bold;
+    color: #0776e8;
 }
