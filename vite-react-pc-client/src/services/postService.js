@@ -6,7 +6,8 @@ const endpoints = {
     newsFeed: '/api/posts/news/followings',
     likeUnlike: (id) => `/api/posts/${id}/like`,
     create: '/api/posts/create',
-    comments: (postId) => `/api/posts/${postId}/comments`
+    comments: (postId) => `/api/posts/${postId}/comments`,
+    comment: (postId) => `/api/post/${postId}/comment`
 }
 
 export async function getPostsFromCurrentUser(userId) {
@@ -62,6 +63,16 @@ export async function getPostComments(postId) {
         const comments = await get(endpoints.comments(postId));
 
         return comments;
+    } catch (err) {
+        throw err;
+    }
+}
+
+export async function commentPostById(postId, commentData) {
+    try {
+        const comment = await post(endpoints.comment(postId), commentData);
+
+        return comment;
     } catch (err) {
         throw err;
     }

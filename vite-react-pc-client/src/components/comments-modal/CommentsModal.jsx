@@ -1,17 +1,22 @@
 import { getPostComments } from '../../services/postService';
-import './comments-modal.css'
+import CommentItem from '../comment-item/CommentItem';
+import './comments-modal.css';
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../../contexts/authContext';
+import CreateComment from '../create-comment/CreateComment';
 
 export default function CommentsModal({
     setCommentsIsOpen,
     postId
 }) {
 
+    const { authUserData } = useContext(AuthContext);
+
     const [comments, setComments] = useState(false);
 
     useEffect(() => {
-        getPostComments(postId) 
+        getPostComments(postId)
             .then(data => setComments(data))
             .catch(err => alert(err.message));
     }, [])
@@ -24,21 +29,22 @@ export default function CommentsModal({
                 <button className="close-button" onClick={() => setCommentsIsOpen(false)}>close</button>
                 <h2 className="comments-heading">Comments</h2>
 
-                { comments 
+                {comments
                     ? <>
-                        { comments.length > 0 
-                        ? <>
-                            <ul className="comments-list">
-                                { comments.map((c, i) => <li key={i}>
-                                    {c.owner.username}: {c.comment}
-                                </li>)}
-                            </ul>
-                        </> 
-                        : <p className="no-comments-msg">No comments yet for this post</p>}
-                    </> 
+                        {comments.length > 0
+                            ? <>
+                                <ul className="comments-list">
+                                    {comments.map((c, i) => <CommentItem key={i} comment={c} />)}
+                                </ul>
+                            </>
+                            : <p className="no-comments-msg">No comments yet for this post</p>}
+                    </>
                     : <p>Loading...</p>}
 
+                {authUserData?.username && <CreateComment />}
+
             </div>
+
 
         </div>
     )

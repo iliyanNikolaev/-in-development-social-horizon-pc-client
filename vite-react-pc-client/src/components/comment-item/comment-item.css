@@ -1,0 +1,25 @@
+.comment-item-container{
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.comment-owner-profile-pic{
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.comment-content {
+    background-color: lightgray;
+    padding: 6px;
+    border-radius: 12px;
+}
+
+.comment-owner-username{
+    text-decoration: none;
+    font-weight: bold;
+    color: #0776e8;
+}

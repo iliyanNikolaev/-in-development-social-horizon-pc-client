@@ -85,10 +85,10 @@ export default function PostItem({
                             <i className="far fa-thumbs-up"></i>
                         </button>
 
-                        <div className="comment-action">
+                        <button className="comment-action" onClick={() => setCommentsIsOpen(true)}>
                             <span>Comment</span>
                             <i className="far fa-comment-dots"></i>
-                        </div>
+                        </button>
                     </div></>
                 : null}
 
