@@ -21,7 +21,7 @@ export default function Feed() {
             getFirstTenPosts()
                 .then(data => setPosts(data))
                 .catch(err => navigate('/') /* todo... show error message with error component */);
-        }, []);
+        }, [authUserData]);
     } else {
         // ако потребителя е логнат, сървъра му връща постовете на последваните от него хора, 
         // ако постовете са по-малко от 10, сървъра ще ги допълни до 10 със случайни постове
@@ -29,7 +29,7 @@ export default function Feed() {
             getNewsFeedPosts()
                 .then(data => setPosts(data))
                 .catch(err => navigate('/') /* todo... show error message with error component */);
-        }, []);
+        }, [authUserData]);
     }
 
     async function createPostHandler(postData) {
