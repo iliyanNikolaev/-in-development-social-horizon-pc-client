@@ -7,7 +7,7 @@ const endpoints = {
     likeUnlike: (id) => `/api/posts/${id}/like`,
     create: '/api/posts/create',
     comments: (postId) => `/api/posts/${postId}/comments`,
-    comment: (postId) => `/api/post/${postId}/comment`
+    comment: (postId) => `/api/posts/${postId}/comment`
 }
 
 export async function getPostsFromCurrentUser(userId) {

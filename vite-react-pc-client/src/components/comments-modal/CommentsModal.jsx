@@ -1,14 +1,15 @@
-import { getPostComments } from '../../services/postService';
+import { commentPostById, getPostComments } from '../../services/postService';
 import CommentItem from '../comment-item/CommentItem';
+import CreateComment from '../create-comment/CreateComment'; 
 import './comments-modal.css';
 
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../contexts/authContext';
-import CreateComment from '../create-comment/CreateComment';
 
 export default function CommentsModal({
     setCommentsIsOpen,
-    postId
+    postId,
+    setCommentsCount
 }) {
 
     const { authUserData } = useContext(AuthContext);
@@ -19,7 +20,14 @@ export default function CommentsModal({
         getPostComments(postId)
             .then(data => setComments(data))
             .catch(err => alert(err.message));
-    }, [])
+    }, []);
+
+    async function createCommentHandler(commentData) {
+        const comment = await commentPostById(postId, commentData);
+
+        setComments(prev => [...prev, comment]);
+        setCommentsCount(prev => prev + 1);
+    }
 
     return (
         <div className="comments-modal-container">
@@ -41,7 +49,7 @@ export default function CommentsModal({
                     </>
                     : <p>Loading...</p>}
 
-                {authUserData?.username && <CreateComment />}
+                {authUserData?.username && <CreateComment createCommentHandler={createCommentHandler} />}
 
             </div>
 

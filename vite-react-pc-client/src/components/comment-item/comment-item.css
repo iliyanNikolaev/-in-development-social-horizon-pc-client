@@ -13,9 +13,10 @@
 }
 
 .comment-content {
-    background-color: lightgray;
-    padding: 6px;
+    background-color: #ffffff;
+    padding: 6px 12px;
     border-radius: 12px;
+    box-shadow: 2px 2px 2px #aaaaaa;
 }
 
 .comment-owner-username{

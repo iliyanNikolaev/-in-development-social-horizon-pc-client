@@ -22,6 +22,8 @@ export default function PostItem({
 
     const [likesIsOpen, setLikesIsOpen] = useState(false);
 
+    const [commentsCount, setCommentsCount] = useState(post.comments.length)
+
     const [commentsIsOpen, setCommentsIsOpen] = useState(false);
 
     useEffect(() => {
@@ -71,7 +73,7 @@ export default function PostItem({
 
                     <div className="comments-show-button" onClick={() => setCommentsIsOpen(true)}>
                         <i className="fas fa-comment comments"></i>
-                        <span className="comments-count">{post.comments.length} comments</span>
+                        <span className="comments-count">{commentsCount} comments</span>
                     </div>
                 </div>
             </div>
@@ -94,7 +96,7 @@ export default function PostItem({
 
                 {/* modals */}
                 {likesIsOpen && <LikesModal likes={likes} setLikesIsOpen={setLikesIsOpen}/>}
-                {commentsIsOpen && <CommentsModal setCommentsIsOpen={setCommentsIsOpen} postId={post._id}/> }
+                {commentsIsOpen && <CommentsModal setCommentsCount={setCommentsCount} setCommentsIsOpen={setCommentsIsOpen} postId={post._id}/> }
         </div>
     )
 }
