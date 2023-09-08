@@ -1,1 +1,1 @@
-export const ASSETS_FOLDER_PATH='http://localhost:5173/public/assets/'
+export const CLOUDINARY_PRESET='wunldj1y';

@@ -57,7 +57,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
 }
 
 .create-post-lower i {
@@ -66,11 +66,19 @@
 
 .add-file {
     cursor: pointer;
+    display: flex;
+    align-items: center;
 }
 
 #file{
     display: none;
 }
+
+.added-file{
+    font-size: 10px;
+    margin-left: 6px;
+}
+
 
 .post-button{
     width: 100px;
