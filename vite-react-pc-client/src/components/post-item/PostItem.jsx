@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../contexts/authContext'
 
 import { Link } from 'react-router-dom';
+import { format } from 'timeago.js';
 
 import { likeUnlikePost } from '../../services/postService';
 
@@ -51,7 +52,7 @@ export default function PostItem({
                 <img className="post-item-profile-pic" src={post.owner.profilePicture} alt="profile-pic" />
                 <div className="username-date">
                     <p className="post-item-owner-username"><Link className="postItem-ownerProfile" to={`/profile/${post.owner?._id}`}>{post.owner?.username}</Link></p>
-                    <p className="post-item-date">Published: {post.createdAt}</p>
+                    <p className="post-item-date">Published: {format(post.createdAt)}</p>
                 </div>
             </div>
             <div className="post-item-content">
