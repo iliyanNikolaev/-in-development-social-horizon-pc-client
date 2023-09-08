@@ -8,7 +8,8 @@ import { getPostsFromCurrentUser } from '../../services/postService';
 
 
 export default function ProfileLeftbar({
-  user
+  user,
+  setCurrentUser
 }) {
 
   const [posts, setPosts] = useState(false); //сетвам го на false за лесна проверка, aко е false няма да изренди компонента с постс лист, а ще изренди лоадинг...
@@ -25,7 +26,7 @@ export default function ProfileLeftbar({
   return (
     <div className="profile-leftbar">
       <div className="profile-leftbar-top">
-        <ProfileUserInfo user={user} />
+        <ProfileUserInfo user={user} setCurrentUser={setCurrentUser}/>
       </div>
 
       <hr />

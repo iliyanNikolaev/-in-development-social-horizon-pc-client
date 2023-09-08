@@ -6,35 +6,35 @@ import { AuthContext } from '../../contexts/authContext'
 import { followUnfollowUserById } from '../../services/userService'
 
 export default function ProfileUserInfo({
-    user
+    user,
+    setCurrentUser
 }) {
 
     const { authUserData } = useContext(AuthContext);
 
     const [userIsFollowed, setUserIsFollowed] = useState(false);
 
-    const [followersCount, setFollowersCount] = useState(user.followers.length);
-
-
     useEffect(() => {
         user.followers.forEach(f => {
             if (f._id == authUserData?._id) {
                 setUserIsFollowed(true);
+            } else {
+                setUserIsFollowed(false);
             }
         })
         // не е необходимо да кетчваме, понеже горния компонент в дървото
         // е проверил userId-то, и ако то е невалидно текущият компонент няма да се рендерира
-    }, []);
+    }, [user]);
 
     async function followUnfollowHandler() {
         await followUnfollowUserById(user._id);
 
         if(userIsFollowed) {
             setUserIsFollowed(false);
-            setFollowersCount(prev => prev - 1);
+            setCurrentUser(state => ({ ...state, followers: user.followers.filter( f => f._id != authUserData?._id)}));
         } else {
             setUserIsFollowed(true);
-            setFollowersCount(prev => prev + 1);
+            setCurrentUser(state => ({...state, followers: [...user.followers, authUserData]}))
         }
     }
 
@@ -45,7 +45,7 @@ export default function ProfileUserInfo({
                 <img className="profile-pic" src={user.profilePicture} alt="profile-pic" />
                 <h2 className="username">{user.username}</h2>
                 <div className="userinfo-connections">
-                    <span className="userinfo-connections-followers">{followersCount} followers</span>
+                    <span className="userinfo-connections-followers">{user.followers.length} followers</span>
                     <span className="userinfo-connections-followings">{user.followings.length} followings</span>
                 </div>
             </div>

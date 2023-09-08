@@ -31,7 +31,7 @@ export default function Profile() {
     <div className="profile-container">
 
       <div className="profile-left-bar">
-        { currentUser._id ? <ProfileLeftbar user={currentUser} /> : <p>Loading...</p>}
+        { currentUser._id ? <ProfileLeftbar user={currentUser} setCurrentUser={setCurrentUser}/> : <p>Loading...</p>}
         
       </div>
 
